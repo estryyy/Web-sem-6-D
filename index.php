@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php include "partials/head.php" ?>
+<?php include "database/database.php" ?>
 
 <head>
   <meta charset="UTF-8">
