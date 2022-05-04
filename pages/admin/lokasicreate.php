@@ -4,11 +4,11 @@
         $database = new Database();
         $db = $database->getConnection();
 
-        $insertSQL = "INSERT INTO lokasi SET nama_lokasi =?";
-        $stmt = $db->prepare($insertSQL);
+        $validateSql = "SELECT * FROM lokasi WHERE nama_lokasi = ?";
+        $stmt = $db->prepare($validateSql);
         $stmt->bindParam(1, $_POST['nama_lokasi']);
         $stmt->execute();
-        if($stmt->rowCount()>0){
+        if($stmt->rowCount() > 0){
            ?>
             <div class="alert alert-danger alert-dismissble">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
@@ -18,7 +18,7 @@
            <?php
     
         }else{
-            $insertSQL ="INSERT INTO lokasi SET nama_lokasi =?";
+            $insertSQL ="INSERT INTO lokasi SET nama_lokasi = ?";
             $stmt = $db->prepare($insertSQL);
             $stmt->bindParam(1, $_POST['nama_lokasi']);
             if($stmt->execute()){
@@ -31,6 +31,7 @@
         echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
         }
     }
+    
 ?>
 
 <section class="content-header">
