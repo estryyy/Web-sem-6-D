@@ -11,14 +11,40 @@ if (isset($_GET['id'])){
     $stmt->execute();
     $row = $stmt->fetch();
     if(isset($row['id'])){
-        ?>
+        if(isset($_POST['button_update'])){
+            
+            $database = new Database();
+            $db = $database->getConnection();
 
-        <?php
-    }else {
-        // echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
-    }
-}else{
-        echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
+            $validateSql = "SELECT * FROM lokasi WHERE nama_lokasi = ? AND id !=?";
+            $stmt = $db->prepare($validateSql);
+            $stmt->bindParam(1, $_POST['nama_lokasi']);
+            $stmt->bindParam(2, $_POST['id']);
+            $stmt->execute();
+            if($stmt->rowCount() > 0){
+               ?>
+                <div class="alert alert-danger alert-dismissble">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                    <h5><i class="icon fas fa-ban"></i>Gagal</h5>
+                    Nama Lokasi sama sudah ada
+                </div>
+               <?php 
+            }else {
+                $updateSQL ="UPDATE lokasi SET nama_lokasi = ? WHERE id = ?";
+                $stmt = $db->prepare($updateSQL);
+                $stmt->bindParam(1, $_POST['nama_lokasi']);
+                $stmt->bindParam(2, $_POST['id']);
+                if($stmt->execute()){
+                    $_SESSION['hasil'] =true;
+                    $_SESSION['pesan'] = "Berhasil ubah data";
+                }else{
+                    $_SESSION['hasil'] =false;
+                    $_SESSION['pesan'] = "Gagal ubah data";
+                }
+            echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
+            }
+        }
+        }
     }
 ?>
 
@@ -60,3 +86,4 @@ if (isset($_GET['id'])){
         </form>
     </div>
 </section>
+<?php include_once "partials/scripts.php" ?>
