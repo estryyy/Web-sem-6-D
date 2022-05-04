@@ -41,7 +41,7 @@
     <div class="container-fluid">
         <div class="row mb2">
             <div class="col-sm-6">
-                <h1>Tambah Data Jabaran</h1>
+                <h1>Tambah Data Jabatan</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
