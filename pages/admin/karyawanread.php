@@ -47,7 +47,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Data Karyawan</h3>
-                    <a href="?page=lokasicreate"class="btn btn-success btn-sm float-right">
+                    <a href="?page=karyawancreate"class="btn btn-success btn-sm float-right">
                         <i class="fa fa-plus-circle"></i> Tambah Data</a>
             </div>
             <div class="card-body">
@@ -81,17 +81,16 @@
                                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $no++ ?></td>
                                         <td><?php echo $row['nik'] ?></td>
                                         <td><?php echo $row['nama_lengkap'] ?></td>
-                                        <td><?php echo $row['bagian_terakhir'] ?></td>
+                                        <td><?php echo $row['bagian_terkini'] ?></td>
                                         <td><?php echo $row['jabatan_terkini'] ?></td>
                                         <td>
-                                        <a href="?page=lokasiupdate&id=<?php echo $row['id'] ?>"
+                                        <a href="?page=karyawanupdate&id=<?php echo $row['id'] ?>"
                                         class="btn btn-primary btn-sm mr-1">
                                         <i class="fa fa-edit"></i> Ubah
                                         </a>
-                                        <a href="?page=lokasidelete&id=<?php echo $row['id'] ?>"
+                                        <a href="?page=karyawandelete&id=<?php echo $row['id'] ?>"
                                         class="btn btn-danger btn-sm"
                                         onClick="javascript: return confirm('Konfirmasi data akan dihapus?');">
                                         <i class="fa fa-trash"></i> Hapus
